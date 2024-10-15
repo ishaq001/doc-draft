@@ -70,7 +70,7 @@ declare type CollaborativeRoomProps = {
   currentUserType: UserType
 }
 
-declare type AddDocumentBtnProps = {
+declare type AddDocButtonProps = {
   userId: string
   email: string
 }
