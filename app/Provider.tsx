@@ -7,14 +7,16 @@ import {
   ClientSideSuspense,
 } from "@liveblocks/react/suspense"
 import Loader from "@/components/Loader"
+import { getClerKUsers } from "@/lib/actions/user.actions"
 
 export function Provider({ children }: { children: ReactNode }) {
   return (
     <LiveblocksProvider
       authEndpoint='/api/liveblocks-auth'
-      // publicApiKey={
-      //   "pk_prod_CsbV9WB6cygZpE30a57gG3T2cZ0jCg8ElymKwfRe2i_0FcDaahi8EzLsYUpWY94f"
-      // }
+      resolveUsers={async ({ userIds }) => {
+        const users = await getClerKUsers({ userIds })
+        return users
+      }}
     >
       <ClientSideSuspense fallback={<Loader />}>{children}</ClientSideSuspense>
     </LiveblocksProvider>
